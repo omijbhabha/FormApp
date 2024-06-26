@@ -1,0 +1,21 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form App</title>
+</head>
+<body>
+    <h1>Welcome to the Form App</h1>
+    <ul>
+        <li><a href="{{ url_for('create_form') }}">Create a Form</a></li>
+        <!-- List forms user has created -->
+        {% for form in forms %}
+            <li>
+                <a href="{{ url_for('fill_form', form_id=form.id) }}">Fill {{ form.name }}</a>
+                |
+                <a href="{{ url_for('view_responses', form_id=form.id) }}">View Responses for {{ form.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

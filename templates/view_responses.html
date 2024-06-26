@@ -1,0 +1,33 @@
+<!-- templates/view_responses.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Responses</title>
+</head>
+<body>
+    <h1>Responses for {{ form.name }}</h1>
+    {% if responses %}
+        <table border="1">
+            <thead>
+                <tr>
+                    {% for field in json_loads(form.fields) %}
+                        <th>{{ field.name }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for response in responses %}
+                    <tr>
+                        {% for field in json_loads(form.fields) %}
+                            <td>{{ json_loads(response.answers)[field.name] }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No responses yet.</p>
+    {% endif %}
+    <a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

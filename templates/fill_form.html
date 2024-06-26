@@ -1,0 +1,25 @@
+<!-- templates/fill_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fill Form</title>
+</head>
+<body>
+    <h1>Fill Form: {{ form.name }}</h1>
+    <form method="POST">
+        {% for field in fields %}
+            <label for="{{ field.name }}">{{ field.name }} ({{ field.type }}):</label><br>
+            {% if field.type == 'text' %}
+                <input type="text" id="{{ field.name }}" name="{{ field.name }}" required><br><br>
+            {% elif field.type == 'integer' %}
+                <input type="number" id="{{ field.name }}" name="{{ field.name }}" required><br><br>
+            {% elif field.type == 'date' %}
+                <input type="date" id="{{ field.name }}" name="{{ field.name }}" required><br><br>
+            {% elif field.type == 'checkbox' %}
+                <input type="checkbox" id="{{ field.name }}" name="{{ field.name }}"><br><br>
+            {% endif %}
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
