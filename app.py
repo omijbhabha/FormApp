@@ -1,8 +1,8 @@
 # app.py
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-import json  # Import the json module
+import json
 import os
 
 app = Flask(__name__)
@@ -10,6 +10,7 @@ app = Flask(__name__)
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///forms.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = 'your_secret_key_here'  # Add this for flash messages
 db = SQLAlchemy(app)
 
 # Database models
@@ -75,6 +76,23 @@ def view_responses(form_id):
     form = Form.query.get_or_404(form_id)
     form_responses = Response.query.filter_by(form_id=form_id).all()
     return render_template('view_responses.html', form=form, responses=form_responses)
+
+# Delete form route
+@app.route('/delete_form/<int:form_id>', methods=['POST'])
+def delete_form(form_id):
+    form = Form.query.get_or_404(form_id)
+    responses = Response.query.filter_by(form_id=form_id).all()
+    
+    # Delete associated responses
+    for response in responses:
+        db.session.delete(response)
+    
+    # Delete the form
+    db.session.delete(form)
+    db.session.commit()
+    
+    flash('Form and associated responses deleted successfully.', 'success')
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(debug=True)
