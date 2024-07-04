@@ -1,0 +1,205 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="date"], 
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button, 
+input[type="submit"] {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover, 
+input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.alert {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.field {
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+legend {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Action buttons (Share, Delete) */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    min-width: 60px;
+    margin-right: 10px;
+}
+
+.btn-share {
+    background-color: #2ecc71;
+    color: white !important;
+}
+
+.btn-share:hover {
+    background-color: #27ae60;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white !important;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+/* Ensure inline form doesn't break layout */
+form.inline {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+/* Additional styles to ensure visibility */
+.action-buttons .btn {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Increase specificity for button styles */
+li .action-buttons .btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+li .action-buttons .btn-share {
+    background-color: #2ecc71;
+    color: white;
+}
+
+li .action-buttons .btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
