@@ -5,6 +5,7 @@
     <title>Form App</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -21,7 +22,7 @@
         <!-- List forms user has created -->
         {% for form in forms %}
             <li>
-                <a href="{{ url_for('fill_form', form_id=form.id) }}">Fill {{ form.name }}</a>
+                <a href="{{ url_for('fill_form', form_id=form.id) }}">Fill {{ form.name }},</a> = 
                 |
                 <a href="{{ url_for('view_responses', form_id=form.id) }}">View Responses for {{ form.name }}</a>
                 |
