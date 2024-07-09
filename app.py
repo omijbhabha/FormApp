@@ -1,5 +1,3 @@
-# app.py
-
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 import json
@@ -48,7 +46,9 @@ def create_form():
                 field_number = key.split('_')[-1]
                 field_name = value
                 field_type = request.form[f'field_type_{field_number}']
-                fields.append({'name': field_name, 'type': field_type})
+                options_text = request.form.get(f'options_text_{field_number}', '')
+                options = options_text.split(',') if options_text else []
+                fields.append({'name': field_name, 'type': field_type, 'options': options})
         form = Form(name=form_name, fields=json.dumps(fields))
         db.session.add(form)
         db.session.commit()
@@ -75,7 +75,8 @@ def fill_form(form_id):
 def view_responses(form_id):
     form = Form.query.get_or_404(form_id)
     form_responses = Response.query.filter_by(form_id=form_id).all()
-    return render_template('view_responses.html', form=form, responses=form_responses)
+    fields = json.loads(form.fields)
+    return render_template('view_responses.html', form=form, responses=form_responses, fields=fields)
 
 # Delete form route
 @app.route('/delete_form/<int:form_id>', methods=['POST'])
